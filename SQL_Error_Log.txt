@@ -1,0 +1,22 @@
+SQL Error Report
+----------------------
+Error 1:
+Message : Violation of PRIMARY KEY constraint 'PK__LibraryP__0E920B851108F931'. Cannot insert duplicate key in object 'dbo.LibraryPhones'. The duplicate key value is (1, +96826780000).
+Cause   : Attempted to insert a duplicate contact number for the same library in the LibraryPhones table.
+Solution: Ensure each (L_ID, Contact_Number) pair is unique before inserting.
+----------------------
+Error 2:
+Message : The INSERT statement conflicted with the FOREIGN KEY constraint 'FK__Book__M_ID__693CA210'. The conflict occurred in database 'LibraryDB', table 'dbo.Member', column 'M_ID'.
+Cause   : Tried to insert a book entry with a member ID (M_ID) that doesn't exist in the Member table.
+Solution: Insert valid M_IDs that already exist in the Member table or insert members before referencing them.
+----------------------
+Error 3:
+Message : Incorrect CHECK constraint: Genre IN ('Fiction', 'Non-fiction', 'Reference', 'Children') caused a failure for genre 'Poetry'.
+Cause   : The Book table had a CHECK constraint that limited genres and an insert tried adding 'Poetry', which wasn't allowed.
+Solution: Update the CHECK constraint to include all valid genres or move genres to a separate table for normalization.
+----------------------
+Error 4:
+Message : Payment insert attempted with incorrect column names: included 'Date', 'Due_Date', 'Return_Date', 'Status' which don't exist in Payment table.
+Cause   : Inserted columns meant for the Loan table into the Payment table by mistake.
+Solution: Match inserted column names with actual columns defined in the Payment table schema.
+----------------------
